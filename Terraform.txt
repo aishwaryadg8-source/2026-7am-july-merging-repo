@@ -1,9 +1,8 @@
----
-- hosts: localhost
-  become: yes
-  tasks:
+resource "aws_instance" "example" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
 
-  - name: Install java package
-    yum: name={{ item }}
-    with_items:
-      - java
+  tags = {
+    Name = "HelloWorld"
+  }
+}
